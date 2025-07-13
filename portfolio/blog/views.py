@@ -1,23 +1,23 @@
-from django.shortcuts import render
 from django.http import HttpResponse, HttpRequest
 from django.template import loader
+from django.shortcuts import get_object_or_404, render
 
 from .models import BlogPost, Comment
 
 # Create your views here.
 def blog_home(request: HttpRequest) -> HttpResponse:
     posts = BlogPost.objects.all()
-    template = loader.get_template("blog/index.html")
     context = {
         "posts": posts
     }
-    return HttpResponse(template.render(context, request))
+    return render(request, "blog/index.html", context)
 
 
 def blog_post_detail(request: HttpRequest, post_id: int) -> HttpResponse:
-    post = BlogPost.objects.get(id=post_id)
-    template = loader.get_template("blog/post_detail.html")
-    context = {
-        "post": post
+    post = get_object_or_404(BlogPost, id=post_id)
+    comments = list(Comment.objects.filter(post=post_id).order_by('-created_at').all())
+    context: dict[str, BlogPost | list[Comment]] = {
+        "post": post,
+        "comments": comments
     }
-    return HttpResponse(template.render(context, request))
+    return render(request, "blog/post_detail.html", context)
