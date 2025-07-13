@@ -29,4 +29,7 @@ Within Django, an app is a subsection of the overall project. Think of how you w
 2. in `<app_name>/admin.py`, register the the app using `admin.site.register(<app>)`
 3. run `python manage.py runserver` then go to 127.0.0.1/admin/ and you will see the sign in prompt. you can now make modifications to the apps.
 
-## Adding views
+
+## Creating Views
+1. in the `views.py` file in the root of your app, add a function that returns an `HttpResponse` object
+2. register the function in the app level `urls.py`
