@@ -1,0 +1,13 @@
+<html>
+    <head>
+        <title>Blog Home</title>
+    </head>
+    <body>
+        <h1>Welcome to the Blog Home Page</h1>
+        <div>
+            {% for post in posts %}
+                <h2><a href="{% url 'blog:blog_post_detail' post.id %}">{{ post.title }}</a></h2>
+            {% endfor %}
+        </div>
+    </body>
+</html>

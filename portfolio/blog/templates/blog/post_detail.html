@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title> blog post #{{ post.id }}</title>
+    </head>
+    <body>
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.content }}</p>
+        <br/>
+        <h2>Comments</h2>
+        {% for comment in comments %}
+        <div>
+            <p> author: {{comment.author}}</p>
+            <br/>
+            <p>
+                {{ comment.content }}
+            </p>
+        </div>
+        {% endfor %}
+    </body>
+</html>
