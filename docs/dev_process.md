@@ -33,3 +33,5 @@ Within Django, an app is a subsection of the overall project. Think of how you w
 ## Creating Views
 1. in the `views.py` file in the root of your app, add a function that returns an `HttpResponse` object
 2. register the function in the app level `urls.py`
+3. create a folder called templates in the root of the app, then within that folder create another folder with the name of the app.
+This is necessary because Django will match the first template that matches the path project wide, meaning the wrong template could be loaded
